@@ -8,6 +8,6 @@ export default defineConfig({
     port: 3000,
     open: true
   },
-  assetsInclude: ['**/*.JPG','**/*.PNG'],
+  assetsInclude: ['**/*.JPG','**/*.PNG','**/*.pdf'],
 })
 
