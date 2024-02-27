@@ -12,7 +12,6 @@ export default function Contact() {
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        
         console.log(formState)
         if(!errorMessage) {
             console.log('Submit Form', formState);
@@ -21,7 +20,8 @@ export default function Contact() {
         fetch("https://getform.io/f/nelz5VbK", {
             method: "POST",
             body: formState,
-            headers: { "Accept": "application/json"}
+            headers: { "Content-Type": "JSON" }
+                // "Accept": "application/json"}
         }).then(res => console.log(res))
         .catch(error => console.log(error));
         
@@ -47,8 +47,8 @@ export default function Contact() {
 
     return (
         <section>
-            <form id="form" onSubmit={handleSubmit} method="POST" acceptCharset="UTF-8">
-                <div>
+            <form id="form" onSubmit={handleSubmit} method="POST" action="https://getform.io/f/nelz5VbK" acceptCharset="UTF-8">
+                <div className="form-group">
                     <label htmlFor="name">Name:</label>
                     <input 
                         type="text"
@@ -56,7 +56,7 @@ export default function Contact() {
                         defaultValue={name}
                         onBlur={handleChange} />
                 </div>
-                <div>
+                <div className="form-group">
                     <label htmlFor="email">Email address:</label>
                     <input 
                         type="email"
@@ -64,7 +64,7 @@ export default function Contact() {
                         defaultValue={email}
                         onBlur={handleChange} />
                 </div>
-                <div>
+                <div className="form-group">
                     <label htmlFor="message">Message:</label>
                     <textarea
                         type="text"
