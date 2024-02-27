@@ -1,19 +1,10 @@
-// export default function Contact() {
-//     return (
-//         <div>
-//             <h1>Contact Page</h1>
-//             <p>Feel free to reach out!</p>
-//         </div>
-//     );
-// };
-
 import { useState } from "react";
 
 export default function Contact() {
     const [formState, setFormState] = useState({
         name: '',
         email: '',
-        message: '',
+        message: ''
     });
 
     const [errorMessage, setErrorMessage] = useState('');
@@ -21,9 +12,18 @@ export default function Contact() {
 
     const handleSubmit = (event) => {
         event.preventDefault();
+        
+        console.log(formState)
         if(!errorMessage) {
             console.log('Submit Form', formState);
         }
+
+        fetch("https://getform.io/f/nelz5VbK", {
+            method: "POST",
+            body: formState,
+            headers: { "Accept": "application/json"}
+        }).then(res => console.log(res))
+        .catch(error => console.log(error));
         
     };
 
@@ -47,7 +47,7 @@ export default function Contact() {
 
     return (
         <section>
-            <form id="contect-form" onSubmit={handleSubmit}>
+            <form id="form" onSubmit={handleSubmit} method="POST" acceptCharset="UTF-8">
                 <div>
                     <label htmlFor="name">Name:</label>
                     <input 
@@ -67,6 +67,7 @@ export default function Contact() {
                 <div>
                     <label htmlFor="message">Message:</label>
                     <textarea
+                        type="text"
                         name="message"
                         rows="5"
                         defaultValue={message}
