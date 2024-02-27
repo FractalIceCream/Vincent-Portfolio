@@ -1,16 +1,16 @@
-import { Outlet } from "react-router-dom";
-import Nav from './components/NavTabs';
+// import { Outlet } from "react-router-dom";
+// import Nav from './components/NavTabs';
 
-export default function App() {
-  return (
-    <>
-      <Nav />
-      <main className="mx-3">
-        <Outlet />
-      </main>
-    </>
-  );
-};
+// export default function App() {
+//   return (
+//     <>
+//       <Nav />
+//       <main className="mx-3">
+//         <Outlet />
+//       </main>
+//     </>
+//   );
+// };
 
 // import { useState } from 'react'
 // import reactLogo from './assets/react.svg'
@@ -47,3 +47,25 @@ export default function App() {
 // }
 
 // export default App
+
+import Header from './components/Header';
+import Nav from './components/NavTabs';
+import Footer from './components/Footer';
+import Page from './components/Page';
+import { useLocation } from 'react-router-dom';
+
+export default function App() {
+  const currentPage = useLocation().pathname;
+
+  return (
+    <div>
+      <Header>
+        <Nav currentPage={currentPage} />
+      </Header>
+      <main>
+        <Page currentPage={currentPage} />
+      </main>
+      <Footer />
+    </div>
+  );
+}
