@@ -1,4 +1,3 @@
-
 import Header from './components/Header';
 import Nav from './components/NavTabs';
 import Footer from './components/Footer';
