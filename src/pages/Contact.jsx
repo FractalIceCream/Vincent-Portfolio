@@ -1,4 +1,5 @@
 import { useState } from "react";
+import axios from 'axios';
 
 export default function Contact() {
     const [formState, setFormState] = useState({
@@ -16,15 +17,11 @@ export default function Contact() {
         if(!errorMessage) {
             console.log('Submit Form', formState);
         }
-
-        fetch("https://getform.io/f/nelz5VbK", {
-            method: "POST",
-            body: formState,
-            headers: { "Content-Type": "JSON" }
-                // "Accept": "application/json"}
-        }).then(res => console.log(res))
-        .catch(error => console.log(error));
-        
+        axios.post("https://getform.io/f/nelz5VbK", 
+        { formState, },
+        { headers: { "Accept": "application/json" }})
+        .then(res => console.log(res))
+        .catch(err => console.log(err));
     };
 
     const handleChange = (event) => {
