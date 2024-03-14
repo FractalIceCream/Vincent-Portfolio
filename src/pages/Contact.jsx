@@ -18,7 +18,7 @@ export default function Contact() {
             console.log('Submit Form', formState);
         }
         axios.post("https://getform.io/f/nelz5VbK", 
-        { formState, },
+        formState,
         { headers: { "Accept": "application/json" }})
         .then(res => console.log(res))
         .catch(err => console.log(err));
